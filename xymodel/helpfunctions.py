@@ -41,6 +41,17 @@ def ravel_multi_index(coord, shape):
 def unravel_index(coord, shape):
     iy = np.remainder(coord, shape[1])
     ix = (coord - iy) / shape[1]
+#     print('Checkpoint4')
+#     print(ix, iy, coord, shape)
+    
+    ix = int(ix)
+    iy = int(iy)
+    
+    '''
+    if(iy <= 0 or ix <= 0):
+        ix = 0
+        iy = 0
+    '''
     return ix, iy
 
 def resampling(w, scheme='mult'):

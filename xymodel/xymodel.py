@@ -270,6 +270,10 @@ class classicalXY:
             #np.random.shuffle(index)
             for ind in index:
                 iX, iY = hlp.unravel_index(ind, (nx,ny))
+#                 print('Checkpoint2')
+#                 print(iX, iY)
+                
+
                 # Sample from Markov kernel (Gibbs)
                 tempMean = np.zeros( N )
                 tempDispersion = np.zeros( N )
@@ -291,6 +295,8 @@ class classicalXY:
                 if iX < nx-1:
                     neiInd = hlp.ravel_multi_index( (iX+1, iY), (nx,ny) )
                     kappa = path[iPath]*self.J
+#                     print('Checkpoint1')
+#                     print(iX, iY)
                     Y = tempDispersion*np.sin( -tempMean ) + kappa*np.sin( -XY[:,iX+1, iY] )
                     X = tempDispersion*np.cos( -tempMean ) + kappa*np.cos( -XY[:,iX+1, iY] )
                     tempDispersion = np.sqrt( tempDispersion**2 + kappa**2 + 2*kappa*tempDispersion*np.cos(-tempMean+XY[:,iX+1, iY] ) )
